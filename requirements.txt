@@ -1,0 +1,23 @@
+# Runtime requirements of SLED (the frozen second-order batch study),
+# anonymous review artifact.
+#
+# JAX installation is hardware-specific. The plain jax/jaxlib requirements below
+# are suitable for CPU-oriented smoke tests. For CUDA/TPU environments, install
+# the matching JAX build recommended for that platform before running full
+# benchmark sweeps.
+
+absl-py
+flax
+jax>=0.5
+jaxlib>=0.5
+matplotlib
+ml-collections
+numpy
+optax
+scipy
+# SOAP: the patched soap-jax that trained every phase-1 hand-over, vendored in
+# third_party/ (install from the repository root)
+./third_party/soap_jax
+tabulate
+wandb
+pyyaml

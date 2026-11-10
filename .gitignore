@@ -1,0 +1,21 @@
+# run outputs of the study scripts (benchmarks/<b>/runs/, runs_smoke/,
+# benchmarks/runs/readings/) and of collect_results.py (benchmarks/results/)
+runs/
+runs_smoke/
+runs_shared/
+runs_shared_smoke/
+results/
+wandb/
+logs/
+
+# full-resolution references written by the data/gen_*.py scripts (not shipped)
+*_hires.mat
+*_hires.npz
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+.venv/
+*.tmp

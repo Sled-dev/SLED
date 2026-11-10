@@ -1,0 +1,33 @@
+{
+  "benchmark": "rayleigh_taylor",
+  "seed": 13,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 20000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "las",
+  "batch_size": 8192,
+  "handover_l2re": 0.3035502220186392,
+  "handover_errors": {
+    "l2_error": 0.3035502220186392,
+    "u_error": 0.46890297046238266,
+    "v_error": 0.2456937604156995,
+    "temp_error": 0.19605393517783534
+  },
+  "loss_weights": {
+    "rc": 0.6930007945032274,
+    "re": 0.698394723474847,
+    "ru": 0.4985366118883732,
+    "rv": 0.5071233896665638,
+    "temp_bc": 3.5925630164702707,
+    "temp_ic": 5.161707387770264,
+    "u_bc": 60.3826070194013,
+    "u_ic": 52.61552280830507,
+    "v_bc": 82.12560832811992,
+    "v_ic": 50.46058084486225
+  },
+  "phase1_ckpt_hash": "f3518e1bca0a",
+  "config_hash": "d04b9c3c9c5b",
+  "wall_clock_s": 308.4,
+  "device_kind": "NVIDIA H100 80GB HBM3"
+}

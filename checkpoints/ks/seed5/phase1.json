@@ -1,0 +1,22 @@
+{
+  "benchmark": "ks",
+  "seed": 5,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 2000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.1330291010111499,
+  "handover_errors": {
+    "l2_error": 0.1330291010111499
+  },
+  "loss_weights": {
+    "ics": 950.2068876468821,
+    "res": 0.9500493426107339
+  },
+  "phase1_ckpt_hash": "41720508645a",
+  "config_hash": "62bc85b1ccc0",
+  "wall_clock_s": 27.0,
+  "device_kind": "NVIDIA H100 80GB HBM3"
+}

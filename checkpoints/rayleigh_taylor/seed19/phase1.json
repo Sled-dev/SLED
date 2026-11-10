@@ -1,0 +1,33 @@
+{
+  "benchmark": "rayleigh_taylor",
+  "seed": 19,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 20000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "las",
+  "batch_size": 8192,
+  "handover_l2re": 0.35328721745564895,
+  "handover_errors": {
+    "l2_error": 0.35328721745564895,
+    "u_error": 0.558636271004928,
+    "v_error": 0.2905427290689276,
+    "temp_error": 0.21068265229309133
+  },
+  "loss_weights": {
+    "rc": 0.7265370220767631,
+    "re": 0.693074889100715,
+    "ru": 0.5594665205908343,
+    "rv": 0.5105464326293497,
+    "temp_bc": 2.4698761289064652,
+    "temp_ic": 4.385017068356048,
+    "u_bc": 68.67665828830545,
+    "u_ic": 59.6832473258108,
+    "v_bc": 64.79767596234635,
+    "v_ic": 53.51128041463654
+  },
+  "phase1_ckpt_hash": "54c03e91422c",
+  "config_hash": "b7826920e8f4",
+  "wall_clock_s": 450.2,
+  "device_kind": "NVIDIA A100-SXM4-80GB"
+}

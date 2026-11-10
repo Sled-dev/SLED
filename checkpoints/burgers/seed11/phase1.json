@@ -1,0 +1,22 @@
+{
+  "benchmark": "burgers",
+  "seed": 11,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 2000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.015480578049331874,
+  "handover_errors": {
+    "l2_error": 0.015480578049331874
+  },
+  "loss_weights": {
+    "ics": 1.471499468216856,
+    "res": 0.9547932682756327
+  },
+  "phase1_ckpt_hash": "e647074ebafe",
+  "config_hash": "b445c715d3d8",
+  "wall_clock_s": 18.8,
+  "device_kind": "NVIDIA H100 80GB HBM3"
+}

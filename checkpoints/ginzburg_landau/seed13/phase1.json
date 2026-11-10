@@ -1,0 +1,25 @@
+{
+  "benchmark": "ginzburg_landau",
+  "seed": 13,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 20000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.2532701209822792,
+  "handover_errors": {
+    "u_error": 0.2532701209822792,
+    "v_error": 0.2578663282279159
+  },
+  "loss_weights": {
+    "ru": 0.6385416676860136,
+    "rv": 0.5591795106490095,
+    "u_ic": 215.5003167837301,
+    "v_ic": 168.97547200184613
+  },
+  "phase1_ckpt_hash": "2359f60b43fe",
+  "config_hash": "279da381c801",
+  "wall_clock_s": 175.2,
+  "device_kind": "NVIDIA H100 80GB HBM3"
+}

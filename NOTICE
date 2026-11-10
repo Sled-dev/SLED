@@ -1,0 +1,63 @@
+SLED
+Copyright 2026 Anonymous Authors
+
+This distribution is provided as an anonymous artifact for double-blind
+research review. The Apache License, Version 2.0 applies to the software in
+this repository unless a file or included third-party component states
+otherwise.
+
+The anonymous attribution above is intentionally temporary. It may be replaced
+with the appropriate copyright holder information after the review process
+permits de-anonymization.
+
+
+Third-party components
+======================
+
+1. third_party/soap_jax
+
+   SOAP optimizer for JAX, from https://github.com/haydn-jones/SOAP_JAX,
+   tag v0.1.0. Copyright (c) 2024 Haydn Jones. MIT License, see
+   third_party/soap_jax/LICENSE.
+
+   Modified (src/soap_jax/soap.py; package version 0.1.0+sled; details in
+   third_party/soap_jax/README.md):
+   - the first moment (exp_avg) is kept in the projected (eigenbasis) space,
+     like the second moment;
+   - exp_avg is rotated into the new basis whenever the preconditioner is
+     refreshed;
+   - the bias correction counts from the first real update
+     (effective_step = count - 1);
+   - weight decay is decoupled (applied after the learning-rate scaling) and
+     not applied on the first step.
+
+2. Reference data of the KdV, Kuramoto-Sivashinsky and Ginzburg-Landau
+   benchmarks
+
+   benchmarks/kdv/data/kdv.mat
+   benchmarks/kdv/data/gen_kdv.m
+   benchmarks/ks/data/ks_chaotic.mat
+   benchmarks/ks/data/gen_ks_chaotic.m
+   benchmarks/ginzburg_landau/data/ginzburg_landau_square.mat
+   benchmarks/ginzburg_landau/data/gen_ginzburg_landau_square.m
+
+   These files are included unchanged. They originate from
+   the jaxpi repository, https://github.com/PredictiveIntelligenceLab/jaxpi
+   (branch "pirate", the PirateNets code), which is distributed under the
+   "Penn Software PirateNet" permission notice, Copyright (C) 2023 The
+   Trustees of the University of Pennsylvania, not under the Apache License.
+
+   Byte-identical copies of kdv.mat, gen_kdv.m, ks_chaotic.mat,
+   gen_ks_chaotic.m and ginzburg_landau_square.mat are distributed with
+   jaxpi2, https://github.com/sifanexisted/jaxpi2, under the Apache License,
+   Version 2.0; they are included here under that license.
+   gen_ginzburg_landau_square.m is distributed only with jaxpi.
+
+3. Rayleigh-Taylor benchmark
+
+   The evaluation window (time_range = (0.1, 0.6)) and the output mesh and
+   times (coords, t) of benchmarks/rayleigh_taylor/data/
+   rayleigh_taylor_spectral.npy follow the Rayleigh-Taylor example of jaxpi2
+   (https://github.com/sifanexisted/jaxpi2, examples/rayleigh_taylor; Apache
+   License, Version 2.0). The field values of the file were computed for this
+   work (see benchmarks/rayleigh_taylor/data/README_spectral.md).

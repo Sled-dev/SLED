@@ -1,0 +1,22 @@
+{
+  "benchmark": "kdv",
+  "seed": 3,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 2000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.3968724230257541,
+  "handover_errors": {
+    "l2_error": 0.3968724230257541
+  },
+  "loss_weights": {
+    "ics": 9.930977301101583,
+    "res": 0.952837199204274
+  },
+  "phase1_ckpt_hash": "479b1a4565c2",
+  "config_hash": "fe8815cf15ec",
+  "wall_clock_s": 30.7,
+  "device_kind": "NVIDIA A100-SXM4-80GB"
+}

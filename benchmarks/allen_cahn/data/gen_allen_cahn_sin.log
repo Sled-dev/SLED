@@ -1,0 +1,6 @@
+solving sin-IC Allen-Cahn: N=8176 dt=1e-05 steps=100000
+  done in 185 s, u range -1.0000..1.0000, finite=True
+wrote <repo>/benchmarks/allen_cahn/data/allen_cahn_sin.mat md5 6a1f6d8d746694eddfe3a96c88c81afd
+wrote <repo>/benchmarks/allen_cahn/data/allen_cahn_sin_hires.mat
+certification vs <scratch>/ac_sin_solves.npz (16384 modes): rel L2 = 5.896e-11
+difference to the benchmark (cos-IC) solution on the 512 grid: rel L2 = 1.429  (different problem)

@@ -1,0 +1,617 @@
+{
+ "description": "Phase-1 hand-over checkpoints shared with the repository (README.md, Shared phase-1 checkpoints).",
+ "seeds": [
+  2,
+  3,
+  5,
+  7,
+  11,
+  13,
+  17,
+  19,
+  23,
+  27
+ ],
+ "checkpoints": [
+  {
+   "benchmark": "allen_cahn",
+   "seed": 2,
+   "phase1_ckpt_hash": "60933dc7abb5",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.07405376260846383,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "6799abed8b730d6bd134a16244216d9abcb55a377694cb7e659d21f5ba6f3038"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 3,
+   "phase1_ckpt_hash": "3a69ab809e36",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.06659686366240232,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "e5f149c90c0c1943815bddb3032627f1136bb54f9fc1af1e33b920d542e5f1dd"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 5,
+   "phase1_ckpt_hash": "5bbc6d4d41ed",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.0659737318027391,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "86cad24018702393c683579a176fbb1eefffff04196fc435690e644f2d9d1748"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 7,
+   "phase1_ckpt_hash": "4cba3e2dedfe",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.08453345025658549,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "d72d92dd22e4e18e519751eb1703c85b5b75c12fd6519929212de56ab6edf819"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 11,
+   "phase1_ckpt_hash": "fbf7be73ddc3",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.09439287552423226,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "6675293ebb13a814c0cedb6418988f341570a20c400179ef21f0c0c9b3c96b88"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 13,
+   "phase1_ckpt_hash": "3f67e17ddd5e",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.055064027712541506,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "f591ba96678feca4f36ccddf07cecc3cd2d6db117bbe235e3b0358e33a50d436"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 17,
+   "phase1_ckpt_hash": "ad0317c9e5ca",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.06647532039024416,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "c7e474e1ed788e2eaf3e04cb4ac6f94584fcaba55ff8dba45c4f639a16ea59b2"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 19,
+   "phase1_ckpt_hash": "7ffbaf837267",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.060423117015063296,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "b0e86149c993cd37e19b5107ea1633e10b8e8f9339edc497c54e6bcc298d0d25"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 23,
+   "phase1_ckpt_hash": "159a5cdf5aa2",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.062059364575949634,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "25a7cca3b38db4fb5055b49c0d0671bd22d5fa680e802d2ba114fb3039143646"
+  },
+  {
+   "benchmark": "allen_cahn",
+   "seed": 27,
+   "phase1_ckpt_hash": "22df102742f0",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.07282814458479879,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "c08c500c5dc5bc8568e77e4b85704889a522fb62f37fdf3fb04867f953dcfe57"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 2,
+   "phase1_ckpt_hash": "a25d71d324e6",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.03452804134936801,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "80990306a5afaf013db0a51ec523cd298d722c356e52c2530693bf3a03fc6857"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 3,
+   "phase1_ckpt_hash": "c458b4320bff",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.012468139910354989,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "253cc08efde08d63ea4fb955e6a2f48af93f19a6e0f2867597ba985beb7cd386"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 5,
+   "phase1_ckpt_hash": "c3f7356f9bd5",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.011113582947459394,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "8a8943d78d3d2c284993cf224427ae89510a631f314b0ff55a333c324afb4a35"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 7,
+   "phase1_ckpt_hash": "4aee09764423",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.011392942524435908,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "c27181213a710ce9386bdb1d8bee76a73302eea8d36a4e1990ffd5869fc8f74d"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 11,
+   "phase1_ckpt_hash": "e647074ebafe",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.015480578049331874,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "2adb2c7939bc8d721ce8c97d91595eb83c22f50df888e79bb0630e9c86a9a7f8"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 13,
+   "phase1_ckpt_hash": "c9863124664d",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.014835084486758271,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "90dd38d2d53b2734e4e53bb524013e5642cc40a65b9476d7a55706db8f750a0b"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 17,
+   "phase1_ckpt_hash": "8e60e751cdc4",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12479001277586614,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "7fe171c6edbff6296ff92faf7965bbc5a048790ef06fdcb136af9895831ca0a7"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 19,
+   "phase1_ckpt_hash": "f3629645c834",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.015897467310308614,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "6e387db013c8674241cfac6ad39d5cde0b51c0c1dc41820514bfb7bc7d7f4f50"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 23,
+   "phase1_ckpt_hash": "3fc819bf2d68",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.008658522164742001,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "7d9bdbdc56ccd1c3e0eeda008f27e12ddc81559451864e425f28ae34001e1ac7"
+  },
+  {
+   "benchmark": "burgers",
+   "seed": 27,
+   "phase1_ckpt_hash": "d68e98cf234e",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.014010284449459169,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "b7e6d8472e5949c60bce76859c569ede2489801ed9b574b114fb8503a8e79115"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 2,
+   "phase1_ckpt_hash": "5e73256a5d34",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.19116376782324476,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "65cb1460701be0cb20bbd2c10d2d89a071950136ebe99dc6d7ca537f94518c24"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 3,
+   "phase1_ckpt_hash": "6cc87f4342b3",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.25033581703194074,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "ad042f31b59dae030150e59c738874cc778d3fd70e9b5fe16d3dd6537452e291"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 5,
+   "phase1_ckpt_hash": "b4057c418178",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.23067281749580973,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "4b52d9ff8ecc4e8aa96dfab246489257a842986ad85d38bd47555561399e436d"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 7,
+   "phase1_ckpt_hash": "2338ad8f399b",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.3259683994617717,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "182e34d15298ab3d8363a28fa97ec719e5b8b012214e5112cd4d27ae5779e9ec"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 11,
+   "phase1_ckpt_hash": "a0bf870c24da",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.22549557268045664,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "96307e69afeb1f6429c9aaf326713c9edfebe6ae097c42e99b1ec2b7533d3ad8"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 13,
+   "phase1_ckpt_hash": "2359f60b43fe",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.2532701209822792,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "a2fc7131b022197c4544b1cc5ba255e97f6f5ba8e6ce579c63eae7f90f792c1a"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 17,
+   "phase1_ckpt_hash": "ae1cc6ffd3b1",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.32053585125693396,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "32e14c66c2f57283c2367230831dd32571b3bf912fa11f125f13fcb25174a7eb"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 19,
+   "phase1_ckpt_hash": "29d2d39558d2",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.27900517699816507,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "f7ce0c96bd0a5d62801aea99ee402789b17e9e2016b7382378f294d3fe32bdb4"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 23,
+   "phase1_ckpt_hash": "857590f0bd4a",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.2149824670659643,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "cbc41c3753c5bcc631553a6955de37f5f049528aed622fa2dd14897a60d635ff"
+  },
+  {
+   "benchmark": "ginzburg_landau",
+   "seed": 27,
+   "phase1_ckpt_hash": "5713c2ba72d1",
+   "first_order_steps": 20000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.27419523596167833,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "c020873f981716caf740eac54dfe3067ca0e8943af19f609fec576fc6628f421"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 2,
+   "phase1_ckpt_hash": "611874420968",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.3336742443735916,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "a3e10e92fd6fb954724249c4556050bce0a18ba753f4752657ffd144f06627b4"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 3,
+   "phase1_ckpt_hash": "479b1a4565c2",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.3968724230257541,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "f8277a7c25562c0656ec2146015fc5951011eeb61a1207f23688e94ce66e804c"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 5,
+   "phase1_ckpt_hash": "aee08733c75e",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.3688405199001187,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "732d0811d79fefdc7808128d1ad675e831c9c717c0ba390b882b630c43ebdb0c"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 7,
+   "phase1_ckpt_hash": "1cf83d875e35",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.38636491719567995,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "4dff288ecc9773ef75c7e60ba12ad31f74cd16d1d12ab8e5308a64b3d13fec19"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 11,
+   "phase1_ckpt_hash": "3f8bc6569744",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.37379603929907884,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "be3cfb2b7c3d7ada66bb9cfb3c3626ef8500e7c7db3aa63af463b3f6d43023ca"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 13,
+   "phase1_ckpt_hash": "ef0c02999b2a",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.2886068663300157,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "23906a932cac75b8873af91663c5ccb33eb87d0733a6488848dad87b262b8afc"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 17,
+   "phase1_ckpt_hash": "88ae308a0088",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.27248480943925424,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "016d9c1963c7f5c2c0b50ff497a49fde57bfba32754fe67c8b3399fc9823a8b2"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 19,
+   "phase1_ckpt_hash": "874278c7ab31",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.46339206055158494,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "dc03545f684fb6c4737a8209c9b55a880be81c7fae346bdac636f0aa59a69aca"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 23,
+   "phase1_ckpt_hash": "b3270bdb7f84",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.28719015649196344,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "0e5a7fa5379b167ecaa2010bbea998c47793449f526738e6057996b4b15cdcdc"
+  },
+  {
+   "benchmark": "kdv",
+   "seed": 27,
+   "phase1_ckpt_hash": "4b35cff8dad4",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.2725448852849929,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "1eda695c700921c875e0ab9b2225f8c9e9ba2476cd9b2b6714df32cfabf493b5"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 2,
+   "phase1_ckpt_hash": "dec4d582f56c",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.13144955232047478,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "60e9c0d9b26592123f5837e2a17ed4e850275c4387929256cfd9d72a144bbc65"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 3,
+   "phase1_ckpt_hash": "d513d96696a5",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12747801372068715,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "405f542a8c330682bdd31791f13595e5eff28350750cf203d9e375afc296cce6"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 5,
+   "phase1_ckpt_hash": "41720508645a",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.1330291010111499,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "e4905bb432c0e3cf61f4892ab24f63617d1c9a5ca13d187349738d6a09624b99"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 7,
+   "phase1_ckpt_hash": "22531db76095",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12956005304317264,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "7104ceb1daea6f9b63c752dda8ea82ab62cb9a10c3e3103621e9c55de004d334"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 11,
+   "phase1_ckpt_hash": "9951f46d2e73",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12813601511531775,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "b2d394e54c42427cd6f4ebeebd4f5c8a55e30bd54808acc604e434534fbc9932"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 13,
+   "phase1_ckpt_hash": "b281c5a866a8",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12989227163192807,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "691546f036dede1e479b66052b62f4d02040268ea819335a59c81d0aeeb496a7"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 17,
+   "phase1_ckpt_hash": "bc00e41c0923",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.1286775795127754,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "5a042d925b8b53e828c60c3e549e05024f1fd4f59266de62d2e10fabe60c175f"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 19,
+   "phase1_ckpt_hash": "3a8c4509ced3",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12977440141690977,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "0e84c1690eec2742fe3a2c644c8778fac16a6467d71bef65dd07f729d20e0897"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 23,
+   "phase1_ckpt_hash": "8b903c5e991f",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12521370410103214,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "ab12c27d5baf357828f86e6d2e2732bdedfd213f4001cb3116541557a838b3a1"
+  },
+  {
+   "benchmark": "ks",
+   "seed": 27,
+   "phase1_ckpt_hash": "c2f0f9ced590",
+   "first_order_steps": 2000,
+   "first_order_sampler": "uniform",
+   "handover_l2re": 0.12835226332753774,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "3a114d95bf55506518df3e51340e9ae02ed2c6423588815398eb286a55c4f27c"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 2,
+   "phase1_ckpt_hash": "a5ec639dcfa0",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.3811310526445458,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "34aed42428a74dc87092957a34d5ac08716bbc4c38f9f2a4d8abec2693831398"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 3,
+   "phase1_ckpt_hash": "ee7b3fb9a898",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.345770148827442,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "45812c8234fccf47d663d8dd9ec9f1432f5d9f3aca149f161b2abc66af287a70"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 5,
+   "phase1_ckpt_hash": "01d27c3fd1aa",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.3632211828411027,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "ab1c4c339d592932b85f20533f2d5abbf36bb4e04a1c803ef43290898aaa2b4b"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 7,
+   "phase1_ckpt_hash": "5c0c24820ce3",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.483715183206183,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "aa12769f8cb5723ee01c8785ae7e990cf79d22909fcbb75075e8eec3da7fcb46"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 11,
+   "phase1_ckpt_hash": "e7f486030220",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.34755700437076725,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "6c3e7191e64c904921287a27e0d450d880537cf8f6bb12259c67fc62bfa27d6c"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 13,
+   "phase1_ckpt_hash": "f3518e1bca0a",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.3035502220186392,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "180def4b016a5ac3f92677110be2e04980fa9f7b89da21d744f3e1b66146a74d"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 17,
+   "phase1_ckpt_hash": "305ab1617836",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.3515898621202169,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "45b419444a638fe06c3a6d25469e669a4ddf42306a7681e38c2991bce71a8f7f"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 19,
+   "phase1_ckpt_hash": "54c03e91422c",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.35328721745564895,
+   "device_kind": "NVIDIA A100-SXM4-80GB",
+   "sha256": "7c09e13a80f37bdbbe68e2a1848cd8088c0c6dad513aedd0516edf8381bc5ef7"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 23,
+   "phase1_ckpt_hash": "1c3ce8189bae",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.3349306492757489,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "02ab72855bd59df1c03fbd1ad1553a39015f93605e425f789d55681a5aff7ecb"
+  },
+  {
+   "benchmark": "rayleigh_taylor",
+   "seed": 27,
+   "phase1_ckpt_hash": "78fd7f8f0bec",
+   "first_order_steps": 20000,
+   "first_order_sampler": "las",
+   "handover_l2re": 0.40861030413431915,
+   "device_kind": "NVIDIA H100 80GB HBM3",
+   "sha256": "86dd6d4e528dedd426dc4248b5a46387cbac3e4e617e925df6e5e0a48f5b920c"
+  }
+ ]
+}

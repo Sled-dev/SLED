@@ -1,0 +1,6 @@
+solving N=2044, dt=2.5e-6 ...
+saved burgers_refined.mat and burgers_refined_hires.mat
+rel L2 (refined vs original burgers.mat): 4.005e-05
+certifying against N=4088, dt=1.25e-6 ...
+rel L2 (2044-mode file vs 4088-mode run): 1.907e-11
+=> accuracy of saved refined reference is at or below this level.

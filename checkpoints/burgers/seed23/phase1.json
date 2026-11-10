@@ -1,0 +1,22 @@
+{
+  "benchmark": "burgers",
+  "seed": 23,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 2000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.008658522164742001,
+  "handover_errors": {
+    "l2_error": 0.008658522164742001
+  },
+  "loss_weights": {
+    "ics": 1.4676450941497068,
+    "res": 0.9548289625350165
+  },
+  "phase1_ckpt_hash": "3fc819bf2d68",
+  "config_hash": "0d335a50a9b5",
+  "wall_clock_s": 23.4,
+  "device_kind": "NVIDIA A100-SXM4-80GB"
+}

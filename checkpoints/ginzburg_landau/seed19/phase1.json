@@ -1,0 +1,25 @@
+{
+  "benchmark": "ginzburg_landau",
+  "seed": 19,
+  "stage": "phase1",
+  "status": "ok",
+  "first_order_steps": 20000,
+  "optimizer": "Soap_SSBroyden2",
+  "dia_type": "uniform",
+  "batch_size": 8192,
+  "handover_l2re": 0.27900517699816507,
+  "handover_errors": {
+    "u_error": 0.27900517699816507,
+    "v_error": 0.2798269831857088
+  },
+  "loss_weights": {
+    "ru": 0.6533053743675474,
+    "rv": 0.5740023558978048,
+    "u_ic": 214.84883316815834,
+    "v_ic": 211.39593596684372
+  },
+  "phase1_ckpt_hash": "29d2d39558d2",
+  "config_hash": "fa1574d9b640",
+  "wall_clock_s": 239.7,
+  "device_kind": "NVIDIA A100-SXM4-80GB"
+}
