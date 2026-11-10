@@ -13,9 +13,10 @@ benchmarks/results/):
                             found at each n (the batch-size study's five rules
                             uniform, sobol, rad, lev, sled at every n; the
                             comparison-only rules at 2^14); the a1 rules
-                            sled_fl<phi> only go to a1.csv
+                            sled_fl<phi>, sled_kappa, sled_iid only go to a1.csv
     a1.csv                  the ablation a1 per benchmark x rule at n = --n_a1
-                            (default 2^14): the fixed floors sled_fl<phi> next
+                            (default 2^14): the fixed floors sled_fl<phi>,
+                            sled_kappa and sled_iid next
                             to the references sobol (phi = 1) and sled
                             (phi = "rho", the measured one), with the median /
                             min / max measured rho (rho_measured of
@@ -63,14 +64,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # display order; anything else follows alphabetically
 BENCHMARKS = ["burgers", "allen_cahn", "kdv", "ks", "ginzburg_landau", "rayleigh_taylor"]
 RULES = ["uniform", "sobol", "rad", "kd", "lev", "sled",
-         "sled_fl0", "sled_fl0.25", "sled_fl0.5", "sled_fl0.75",
+         "sled_fl0", "sled_fl0.25", "sled_fl0.5", "sled_fl0.75", "sled_kappa", "sled_iid",
          "uniform_r500", "rad_r500", "vrba_r100", "pinnacle_k",
          "pinnacle_s", "pinnacle_k_r500", "rad_r500_reset", "vrba_r100_reset"]
 # ablation a1: the fixed floor mass phi of each rule; sobol is phi = 1, sled
 # the measured rho
 A1_PHI = {"sled_fl0": 0.0, "sled_fl0.25": 0.25, "sled_fl0.5": 0.5,
-          "sled_fl0.75": 0.75, "sobol": 1.0, "sled": "rho"}
-A1_ONLY = [r for r in A1_PHI if r.startswith("sled_fl")]  # not in the study tables
+          "sled_fl0.75": 0.75, "sobol": 1.0, "sled": "rho",
+          "sled_kappa": "rho", "sled_iid": "rho"}
+A1_ONLY = [r for r in A1_PHI if r not in ("sobol", "sled")]  # not in the study tables
 # supplementary study: its protocols and their comparators at n = --n_supp
 SUPP_RULES = ["pinnacle_s", "pinnacle_k_r500", "rad_r500_reset", "vrba_r100_reset"]
 SUPP_COMPARATORS = ["sled", "pinnacle_k", "rad_r500", "vrba_r100"]

@@ -11,7 +11,7 @@ process.
 
 ## Protocol
 
-1. **Phase 1.** SOAP on 8,192 uniform residual points (Rayleigh-Taylor: LAS),
+1. **Phase 1.** SOAP on 8,192 uniform residual points,
    GradNorm loss weights, 2,000 steps (Ginzburg-Landau, Rayleigh-Taylor:
    20,000). Trained once per (benchmark, seed) and saved as a hand-over
    checkpoint.
@@ -25,10 +25,10 @@ batch.
 
 | study | script | rules | n | seeds |
 |---|---|---|---|---|
-| batch size | `batch_size_study.py` | `uniform` `sobol` `rad` `lev` `sled` | 2^11 … 2^15 (KS to 2^16, RT to 2^17) | 2, 3, 5, 7, 11, 13 |
-| sampler comparison | `sampler_comparison.py` | the ten rules of the table below | 2^14 | 2, 3, 5, 7, 11, 13, 17, 19, 23, 27 |
-| ablation a1 | `a1.py` | `sled_fl0` `sled_fl0.25` `sled_fl0.5` `sled_fl0.75` | 2^14 | 2, 3, 5, 7, 11, 13 |
-| supplementary | `supplementary.py` | `pinnacle_s` `rad_r500_reset` `vrba_r100_reset` (KS: + `pinnacle_k_r500`); `--large`: `uniform` `sobol` `rad_r500` `sled` | 2^14; `--large` 2^15, 2^16 | 2, 3, 5, 7, 11 |
+| batch size | `batch_size_study.py` | `uniform` `sobol` `rad` `lev` `sled` | 2^11 … 2^14 (KS to 2^15, RT to 2^16) | 2, 3, 5, 7, 11, 13 |
+| sampler comparison | `sampler_comparison.py` | the first ten rules of the table below | 2^14 | 2, 3, 5, 7, 11, 13, 17, 19, 23, 27 |
+| ablation a1 | `a1.py` | `sled_fl0` `sled_fl0.25` `sled_fl0.5` `sled_fl0.75` `sled_kappa` `sled_iid` | 2^14 | 2, 3, 5, 7, 11, 13 |
+| supplementary | `supplementary.py` | `pinnacle_s` `pinnacle_k_r500` `rad_r500_reset` `vrba_r100_reset`; `--large`: `uniform` `sobol` `rad` `sled` | 2^14; `--large` 2^15 and 2^16 (KS only 2^16, RT none) | 2, 3, 5, 7, 11 |
 
 The scored rules draw from a pool of M uniform points: M = 65,536 for
 n ≤ 16,384 (the same pool for every n), M = 4n above.
@@ -114,6 +114,8 @@ importance weight of a draw from the proposal π.
 | `pinnacle_k_r500` | `pinnacle_k`, reselected from a fresh pool | 1 | every 500 steps |
 | `rad_r500_reset`, `vrba_r100_reset` | as `rad_r500`, `vrba_r100`, quasi-Newton memory reset at every redraw | 1, λ | every 500 / 100 steps |
 | `sled_fl<φ>` | `sled` with the floor mass fixed at φ ∈ {0, 0.25, 0.5, 0.75} | as `sled` | — |
+| `sled_kappa` | SLED-κ: `sled` with the leverage draws replaced by draws ∝ kernel diagonal | as `sled` | — |
+| `sled_iid` | SLED-iid: `sled` with the Sobol points replaced by i.i.d. uniform points | as `sled` | — |
 
 **SLED** scores the pool with the stacked residual of all equations (scaled by
 the frozen loss weights): it estimates the ridge leverage and the kernel
@@ -144,7 +146,7 @@ healthy regime its steps agree with the plain update to round-off.
 | `kdv` | Korteweg-de Vries | `kdv.mat` (jaxpi), ≈ 5e-12 | t ∈ [0, 1] | 2,000 |
 | `ks` | Kuramoto-Sivashinsky | `ks_chaotic.mat` (jaxpi), ≈ 3e-9 | first 35 % of t | 2,000 |
 | `ginzburg_landau` | complex Ginzburg-Landau, 2-D | `ginzburg_landau_square.mat` (jaxpi), ≈ 3e-8 | first 80 % of t | 20,000 |
-| `rayleigh_taylor` | Boussinesq Rayleigh-Taylor, Ra = 10⁶ | `rayleigh_taylor_spectral.npy`, 6.3e-9 | t ∈ [0, 4.75] | 20,000 (LAS) |
+| `rayleigh_taylor` | Boussinesq Rayleigh-Taylor, Ra = 10⁶ | `rayleigh_taylor_spectral.npy`, 6.3e-9 | t ∈ [0, 4.75] | 20,000 |
 
 The reported error is the relative L2 error of u (Rayleigh-Taylor: the mean
 over u, v, T). `REFERENCE_SOLUTIONS.md` documents how each reference was made
@@ -205,26 +207,26 @@ Medians of the recorded runs on one A100 (80 GB) at n = 16,384:
 | 28 min | 32 min | 40 min | 47 min | 52 min | 56 min |
 
 Smaller batches are faster (20–40 % at n = 2,048). Above n = 16,384 the cost
-grows mainly on Rayleigh-Taylor, about linearly in n; its n = 131,072 runs peak
-at ~36 GiB and need an 80 GB GPU. Every other run peaks at ~10–12 GiB (three
-P × P float64 matrices for P ≈ 21,000 network parameters). Phase 1 takes a few
-minutes per benchmark and seed.
+grows mainly on Rayleigh-Taylor, about linearly in n; its n = 65,536 runs peak at
+~19 GiB. Every other run peaks at ~10–12 GiB (three P × P float64 matrices for
+P ≈ 21,000 network parameters). Phase 1 takes a few minutes per benchmark and
+seed.
 
 **Number of runs** over the six benchmarks:
 
 | study | grid per benchmark | runs |
 |---|---|---|
-| batch size | 5 rules × 5 sizes × 6 seeds (KS 6 sizes, RT 7) | 990 |
+| batch size | 5 rules × 4 sizes × 6 seeds (KS 5 sizes, RT 6) | 810 |
 | sampler comparison | 10 rules × 10 seeds at n = 2^14 | 600 |
-| ablation a1 | 4 rules × 6 seeds at n = 2^14 | 144 |
-| supplementary protocols | 3 rules × 5 seeds at n = 2^14 (KS 4 rules) | 95 |
-| supplementary larger batches | 4 rules × 2 sizes × 5 seeds | 240 |
+| ablation a1 | 6 rules × 6 seeds at n = 2^14 | 216 |
+| supplementary protocols | 4 rules × 5 seeds at n = 2^14 | 120 |
+| supplementary larger batches | 4 rules × 2 sizes × 5 seeds on four benchmarks, + 4 rules × 5 seeds on KS (2^16) | 180 |
 
-Some runs belong to two studies, e.g. `sled` at n = 2^14 on seed 2 is part of
-both the batch-size study and the sampler comparison. Such a run is trained once
-and stored once, so all studies together are 1,769 runs, not 2,069: roughly
-1,200 A100-hours at ~40 min per run, plus the extra cost of the large
-Rayleigh-Taylor batches.
+Some runs belong to two studies: the five batch-size rules at n = 2^14 on seeds
+2–13 are also part of the sampler comparison. Such a run is trained once and
+stored once, so all studies together are 1,746 runs, not 1,926: roughly 1,200
+A100-hours at ~40 min per run, plus the extra cost of the batches above 2^14 and
+of PINNACLE-K's 79 reselections per `pinnacle_k_r500` run.
 
 ## License
 

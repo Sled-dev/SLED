@@ -18,8 +18,8 @@ Protocols at n = N = 2^14 = 16,384 (RULES):
 Their comparators at the same n are rules of the other studies: pinnacle_k,
 rad_r500, vrba_r100 and sled (COMPARATORS; --rules).
 
-Larger batches (--large): LARGE_RULES at n = 2^15 = 32,768 and 2^16 = 65,536
-(LARGE_SIZES); RAD is redrawn every 500 steps there, as in the protocols above.
+Larger batches (--large): LARGE_RULES at n = 2^16 = 65,536 (LARGE_SIZES; 2^15
+is in the batch-size study); RAD frozen, as in the batch-size study.
 
 The candidate pool follows the batch-size study's rule
 (configs/batch_size_study.pool_mult): M = 4 n for every n here. A (rule, n) that
@@ -33,8 +33,8 @@ SEEDS = [2, 3, 5, 7, 11]            # the seeds of the paper's supplementary run
 N = 2**14
 RULES = ["pinnacle_s", "pinnacle_k_r500", "rad_r500_reset", "vrba_r100_reset"]
 COMPARATORS = ["pinnacle_k", "rad_r500", "vrba_r100", "sled"]
-LARGE_SIZES = [2**15, 2**16]
-LARGE_RULES = ["uniform", "sobol", "rad_r500", "sled"]
+LARGE_SIZES = [2**16]
+LARGE_RULES = ["uniform", "sobol", "rad", "sled"]
 QN_STEPS = 40_000
 LOG_EVERY = 50              # off-batch loss / error series cadence (QN steps)
 

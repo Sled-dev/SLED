@@ -1,7 +1,7 @@
 """Ginzburg-Landau: supplementary study (configs/supplementary.py).
 
     python supplementary.py                                # the protocols at n = 2^14, all seeds
-    python supplementary.py --large                        # uniform / sobol / rad_r500 / sled at 2^15, 2^16
+    python supplementary.py --large                        # uniform / sobol / rad / sled at LARGE_SIZES
     python supplementary.py --rules pinnacle_k rad_r500 vrba_r100 sled   # the comparators at 2^14
     python supplementary.py --seeds 2 --rules pinnacle_s pinnacle_k_r500
     python supplementary.py --shared_phase1                # the shared hand-overs
@@ -71,6 +71,9 @@ def main():
                            else study.SEEDS)
     rules = args.rules or (study.LARGE_RULES if args.large else study.RULES)
     sizes = args.sizes or (study.LARGE_SIZES if args.large else [study.N])
+    if not sizes:
+        raise SystemExit("no larger batches on this benchmark (configs/supplementary.py: "
+                         "LARGE_SIZES is empty)")
     runs = [dict(seed=seed, rule=rule, n=n, name=f"{rule}/n{n}",
                  config=study.get_config(rule, seed, n=n))
             for seed in seeds for n in sizes for rule in rules]

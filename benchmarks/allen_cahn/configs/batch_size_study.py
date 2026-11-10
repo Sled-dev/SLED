@@ -3,7 +3,7 @@
 Phase 1 is configs/base.py, trained once per seed; every run restores that
 checkpoint and optimizes ONE frozen batch of n points, drawn by the sampling
 rule (pipeline.domain_importance_adapt.QN_RULES), for QN_STEPS quasi-Newton
-steps. Only n and the rule vary; n = 2^11 ... 2^15.
+steps. Only n and the rule vary; n = 2^11 ... 2^14.
 
 Candidate pool of the scored rules (rad, lev, sled): M = max(POOL_SIZE, 4 n) points.
 Up to n = 16,384 the pool is pinned at 65,536, so every score estimate is
@@ -18,7 +18,7 @@ from pipeline.domain_importance_adapt import configure_qn_batch
 from configs import base
 
 SEEDS = [2, 3, 5, 7, 11, 13]
-SIZES = [2**11, 2**12, 2**13, 2**14, 2**15]
+SIZES = [2**11, 2**12, 2**13, 2**14]
 RULES = ["uniform", "sobol", "rad", "lev", "sled"]
 QN_STEPS = 40_000
 POOL_SIZE = 65_536          # candidate pool up to n = 16,384; 4 n above

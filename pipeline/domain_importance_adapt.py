@@ -1066,6 +1066,21 @@ def pinnacle_embedding(stacked, params, pool, L=NYS_L, eig_tol=PIN_EIG_TOL,
                       "spectral_flatness": float(evals[-1] / evals[0])}
 
 
+def iid_cover_key(seed):
+    """Key of sled_iid's uniform part: fold_in(PRNGKey(seed + 3), 1), seed + 3 being
+    the Sobol floor's scramble seed."""
+    return random.fold_in(random.PRNGKey(int(seed) + 3), 1)
+
+
+def iid_cover_points(dom, n, seed):
+    """n i.i.d. uniform points on the domain box (UniformSampler under
+    iid_cover_key(seed)); not taken from the pool, so they cannot coincide with
+    the leverage draws."""
+    s = UniformSampler(dom, int(n), 0)
+    s.key = iid_cover_key(seed)
+    return next(s)
+
+
 @partial(jit, static_argnums=(1, 2))
 def kmeanspp_greedy(X, n, n_trials, key):
     """Greedy K-means++ seeding of the rows of X on device: the algorithm of
@@ -1136,19 +1151,31 @@ class FrozenBatchSampler:
     default_floor_source = "uniform"
     default_stacked = False
     default_floor_rho = False
+    # what the scored part draws from: "lev" (the ridge leverage of the
+    # leverage rules) or "kdiag" (the kernel diagonal kappa_hat those rules
+    # measure for rho; sled_kappa)
+    default_score = "lev"
 
     def __init__(self, dom, batch_size, seed=0, *, pool_mult=4, probes=PROBES,
                  floor=0.2, weighted=True, floor_source=None,
                  k_anneal=0, anneal_max_iter=None, lam_rel=NYS_LAM_REL,
                  nys_L=NYS_L, nys_k=NYS_K, rad_k=None, rad_c=None,
-                 stacked=None, floor_rho=None):
+                 stacked=None, floor_rho=None, score=None):
         floor_source = self.default_floor_source if floor_source is None else floor_source
-        if floor_source not in ("uniform", "sobol"):
+        # "iid" (sled_iid): the floor mass as round(floor * n) i.i.d. uniform points
+        # on the domain at weight 1 (key iid_cover_key), in place of the Sobol points
+        if floor_source not in ("uniform", "sobol", "iid"):
             raise ValueError(f"unknown floor_source: {floor_source}")
         if not 0.0 <= float(floor) <= 1.0:
             raise ValueError(f"floor must lie in [0, 1], got {floor}")
-        if floor_source == "sobol" and not self.sobol_floor_allowed:
-            raise ValueError(f"floor_source='sobol' is undefined for rule {self.rule!r}")
+        if floor_source in ("sobol", "iid") and not self.sobol_floor_allowed:
+            raise ValueError(f"floor_source={floor_source!r} is undefined for rule {self.rule!r}")
+        self.score = str(self.default_score if score is None else score)
+        if self.score not in ("lev", "kdiag"):
+            raise ValueError(f"unknown score {self.score!r} (lev | kdiag)")
+        if self.score != "lev" and not self.provides_rho:
+            raise ValueError(f"score={self.score!r} replaces the leverage of a leverage rule "
+                             f"(lev / sled); rule {self.rule!r} has none")
         self.dom = dom
         self.batch_size = int(batch_size)
         self.seed = int(seed)
@@ -1271,7 +1298,7 @@ class FrozenBatchSampler:
             batch = pool[idx]
             omega = 1.0 / (M * pi[idx]) if weighted else jnp.ones(n)
             n_distinct = int(np.unique(np.asarray(idx)).size)
-        else:                                          # "sobol" floor
+        else:                                          # "sobol" / "iid" floor
             n_fl = int(round(fl_used * n))
             n_sc = int(n) - n_fl
             pi = build_pi(0.0)                         # UNFLOORED scored pmf
@@ -1284,8 +1311,12 @@ class FrozenBatchSampler:
                 idx = jnp.zeros((0,), dtype=jnp.int32)
                 omega_sc = jnp.zeros((0,))
                 scored_pts = pool[:0]
-            s_pts = (SobolSampler(self.dom, n_fl, seed=seed + 3).sampled
-                     if n_fl > 0 else pool[:0])
+            if n_fl == 0:
+                s_pts = pool[:0]
+            elif self.floor_source == "sobol":
+                s_pts = SobolSampler(self.dom, n_fl, seed=seed + 3).sampled
+            else:                                      # "iid": uniform points, not from the pool
+                s_pts = iid_cover_points(self.dom, n_fl, seed)
             batch = jnp.concatenate([scored_pts, s_pts], axis=0)
             omega = jnp.concatenate([omega_sc, jnp.ones(n_fl)], axis=0)
             n_distinct = int(np.unique(np.asarray(idx)).size) + n_fl
@@ -1448,6 +1479,7 @@ class LeverageSampler(FrozenBatchSampler):
         else:
             K, pw = _timed_ntk_diag(model, params, pool, self.probes,
                                     random.PRNGKey(seed + 1))
+        self._kdiag = np.asarray(K)                    # kappa_hat on this pool (score="kdiag")
         try:
             from scipy.stats import spearmanr
             rho = float(spearmanr(lev, np.asarray(K)).statistic)
@@ -1462,6 +1494,12 @@ class LeverageSampler(FrozenBatchSampler):
         lev, d_lam, nys, wall = self._leverage(model, params, pool, weights)
         pw, extra = self._diagnostics(model, params, pool, seed, lev, d_lam, nys,
                                       wall, weights)
+        if self.score == "kdiag":
+            # sled_kappa: the scored part draws from kappa_hat, the same Hutchinson
+            # estimate rho is measured with; rho and the Sobol part are unchanged
+            extra["score"] = "kdiag"
+            return (jnp.asarray(np.maximum(np.nan_to_num(self._kdiag, nan=0.0, posinf=0.0), 0.0)),
+                    pw, extra)
         return jnp.asarray(lev), pw, extra
 
 
@@ -1636,7 +1674,7 @@ QN_SAMPLERS = {cls.rule: cls for cls in (
 QN_TYPES = tuple(QN_SAMPLERS)
 # knobs get_qn_sampler forwards from config.qn_batch to the sampler
 QN_SAMPLER_KWARGS = ("pool_mult", "probes", "floor", "weighted", "lam_rel",
-                     "nys_L", "nys_k", "rad_k", "rad_c")
+                     "nys_L", "nys_k", "rad_k", "rad_c", "score", "floor_source")
 
 
 def get_qn_sampler(config, dom, k_anneal=0, anneal_max_iter=None, n=None):
@@ -1705,6 +1743,11 @@ QN_RULES = {
                          floor=0.5),
     "sled_fl0.75":  dict(type="sled_fixed", weighted=True, refresh_every=None,
                          floor=0.75),
+    # ablation a1: SLED with the scored part drawn from the kernel diagonal
+    # kappa_hat instead of the leverage (SLED-kappa), and with the floor part
+    # i.i.d. uniform instead of scrambled Sobol (SLED-iid); rho as in sled
+    "sled_kappa":   dict(type="sled", weighted=True, refresh_every=None, score="kdiag"),
+    "sled_iid":     dict(type="sled", weighted=True, refresh_every=None, floor_source="iid"),
     # supplementary study: the refresh rules with the quasi-Newton memory reset
     # at every redraw (the optimizer state re-initialised at the current point)
     "rad_r500_reset":  dict(type="rad", weighted=False, refresh_every=500,
@@ -1747,8 +1790,11 @@ def configure_qn_batch(config, rule, n, pool_mult=4, probes=PROBES, floor=0.2,
     qn.nys_k = int(nys_k)
     period = preset["refresh_every"] if refresh_every == "rule" else refresh_every
     qn.refresh_every = None if period is None else int(period)
-    # written only by the rules that set it, so every other rule's qn_batch (and
-    # with it its run_key) is unchanged
+    # written only by the rules that set them, so every other rule's qn_batch
+    # (and with it its run_key) is unchanged
+    for k in ("score", "floor_source"):
+        if k in preset:
+            qn[k] = preset[k]
     if preset.get("reset_memory"):
         qn.reset_memory = True
     return config

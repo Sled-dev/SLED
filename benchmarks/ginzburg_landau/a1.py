@@ -1,6 +1,6 @@
-"""Ginzburg-Landau: ablation a1, SLED with a fixed floor mass at n = 2^14 (configs/a1.py).
+"""Ginzburg-Landau: ablation a1, SLED's floor mass, score and floor points at n = 2^14 (configs/a1.py).
 
-    python a1.py                                                # all four rules, all seeds
+    python a1.py                                                # all six rules, all seeds 
     python a1.py --seeds 2 --rules sled_fl0 sled_fl0.5
     python a1.py --seeds 2 --rules sled sobol                   # the references
     python a1.py --phase1_dir /path/to/phase1                   # reuse hand-overs

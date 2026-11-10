@@ -1,4 +1,5 @@
-"""Ablation a1 for Kuramoto-Sivashinsky: SLED with a fixed floor mass, n = 2^14 = 16,384.
+"""Ablation a1 for Kuramoto-Sivashinsky: SLED with a fixed floor mass, a kappa score or
+an i.i.d. floor, n = 2^14 = 16,384.
 
 Phase 1 is configs/base.py, trained once per seed; every run restores that
 checkpoint and runs QN_STEPS quasi-Newton steps on a batch of N points built by
@@ -10,6 +11,10 @@ kernel diagonal) replaced by a fixed phi
     sled_fl0.25    phi = 0.25: 4,096 Sobol points + 12,288 leverage draws
     sled_fl0.5     phi = 0.5: 8,192 + 8,192
     sled_fl0.75    phi = 0.75: 12,288 Sobol points + 4,096 leverage draws
+    sled_kappa     SLED-kappa: the leverage draws replaced by draws from the
+                   kernel diagonal kappa_hat (rho, Sobol part unchanged)
+    sled_iid       SLED-iid: the Sobol part replaced by i.i.d. uniform points
+                   (rho, leverage draws unchanged)
 
 phi = 1 is the sobol rule. Everything else is SLED's: stacked estimator,
 scrambled-Sobol floor, unfloored leverage proposal, weights omega = 1/(M pi).
@@ -25,7 +30,7 @@ from configs import base, batch_size_study
 
 SEEDS = [2, 3, 5, 7, 11, 13]
 N = 2**14
-RULES = ["sled_fl0", "sled_fl0.25", "sled_fl0.5", "sled_fl0.75"]
+RULES = ["sled_fl0", "sled_fl0.25", "sled_fl0.5", "sled_fl0.75", "sled_kappa", "sled_iid"]
 QN_STEPS = 40_000
 LOG_EVERY = 50              # off-batch loss / error series cadence (QN steps)
 
