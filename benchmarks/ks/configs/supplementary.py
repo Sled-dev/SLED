@@ -9,8 +9,8 @@ Protocols at n = N = 2^14 = 16,384 (RULES):
     pinnacle_s       PINNACLE-S: n pool points drawn without replacement with
                      probability ~ alpha (the eNTK convergence degree), frozen
     pinnacle_k_r500  PINNACLE-K reselected from a fresh pool every 500 steps, the
-                     quasi-Newton memory kept (79 reselections of 1-3 min each on
-                     an H100 add 1-4 h to a run)
+                     quasi-Newton memory kept (its 79 reselections add
+                     hours to a run)
     rad_r500_reset   RAD (k = 1, c = 1) redrawn every 500 steps, the quasi-Newton
                      memory reset at every redraw
     vrba_r100_reset  vRBA redrawn every 100 steps, the memory reset at every redraw

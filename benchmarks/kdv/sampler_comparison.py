@@ -1,4 +1,4 @@
-"""KdV: sampler comparison at n = 2^15 (configs/sampler_comparison.py).
+"""KdV: sampler comparison at n = 2^14 (configs/sampler_comparison.py).
 
     python sampler_comparison.py                                # all rules, all seeds
     python sampler_comparison.py --seeds 2 --rules sled sobol lev
@@ -11,7 +11,7 @@ into runs/phase1/seed<k>/phase1.pkl (shared with batch_size_study.py; skipped if
 present) and every run restores it. Each run writes runs/<rule>/n<n>/seed<k>/
 (config.yaml, metrics.jsonl with the off-batch loss, params_end.pkl,
 summary.json); finished runs are skipped, so the script resumes where it
-stopped, and the n = 2^15 runs of the uniform / sobol / rad / lev / sled rules
+stopped, and the n = 2^14 runs of the uniform / sobol / rad / lev / sled rules
 are shared with batch_size_study.py. Run from this directory.
 """
 import os
@@ -52,7 +52,7 @@ def main():
                     help="default: the config's seeds (with --shared_phase1, those "
                          "that have a shared hand-over)")
     ap.add_argument("--rules", nargs="+", default=study.RULES, choices=list(QN_RULES))
-    ap.add_argument("--n", type=int, default=study.N, help="batch size (default 2^15)")
+    ap.add_argument("--n", type=int, default=study.N, help="batch size (default 2^14)")
     ap.add_argument("--phase1_dir", default=None,
                     help="directory with seed<k>/phase1.pkl (default runs/phase1)")
     ap.add_argument("--shared_phase1", action="store_true",

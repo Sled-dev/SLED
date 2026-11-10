@@ -43,7 +43,7 @@ Pools (one JSON each)
            pool and probes at every checkpoint
     run    M = 4 * run_n, pool seed = config.seed, probe key = seed + 1: the
            pool from which the frozen-batch samplers draw a batch of run_n
-           points (default run_n = 2^15, the sampler comparison's n), so the run
+           points (default run_n = 2^14, the sampler comparison's n), so the run
            reading IS the floor SLED draws there (asserted against the sled_*
            block)
 
@@ -95,7 +95,7 @@ Usage (from this directory):
 
     python handover_readings.py                                # six benchmarks, every seed
     python handover_readings.py --benchmarks rayleigh_taylor --seeds 2 3
-    python handover_readings.py --run_n 16384 --phase1_dir /path/to/{benchmark}/phase1
+    python handover_readings.py --phase1_dir ../checkpoints/{benchmark}   # the shared hand-overs
     python handover_readings.py --marks                        # batch-size marks
     python handover_readings.py --export_only                  # rebuild the tables
     python handover_readings.py --benchmarks burgers --seeds 0 --smoke \\
@@ -178,7 +178,7 @@ NYS_L, NYS_K = 1024, 256                 # one (L, k) for every checkpoint
 PROBES = 8
 DIAG_POOL_M, DIAG_POOL_SEED, DIAG_PROBE_KEY = 32768, 12345, 7   # the frozen diagnostics pool
 RUN_POOL_MULT = 4                        # the run's own pool is 4n
-RUN_N = 2**15                            # the sampler comparison's batch size
+RUN_N = 2**14                            # the sampler comparison's batch size
 FLOOR = 0.2                              # lam_fl of ess_lev and of the lev batch
 TRUST_SPEARMAN = 0.95                    # rank-k reconstruction check (logged only)
 COV_GRID = {2: 64, 3: 32}                # coverage cells per dimension, by input dimension
@@ -962,7 +962,7 @@ def main():
                          "by the benchmark name (default <benchmark>/runs/phase1)")
     ap.add_argument("--run_n", type=int, default=RUN_N,
                     help="batch size of the run pool (M = 4 run_n) and of the "
-                         "lev_batch / sled batches (default 2^15, the sampler "
+                         "lev_batch / sled batches (default 2^14, the sampler "
                          "comparison's n)")
     ap.add_argument("--out", default=OUT_DIR,
                     help="output directory (default runs/readings)")

@@ -26,7 +26,7 @@ batch.
 | study | script | rules | n | seeds |
 |---|---|---|---|---|
 | batch size | `batch_size_study.py` | `uniform` `sobol` `rad` `lev` `sled` | 2^11 … 2^15 (KS to 2^16, RT to 2^17) | 2, 3, 5, 7, 11, 13 |
-| sampler comparison | `sampler_comparison.py` | the ten rules of the table below | 2^15 | 2, 3, 5, 7, 11, 13 |
+| sampler comparison | `sampler_comparison.py` | the ten rules of the table below | 2^14 | 2, 3, 5, 7, 11, 13, 17, 19, 23, 27 |
 | ablation a1 | `a1.py` | `sled_fl0` `sled_fl0.25` `sled_fl0.5` `sled_fl0.75` | 2^14 | 2, 3, 5, 7, 11, 13 |
 | supplementary | `supplementary.py` | `pinnacle_s` `rad_r500_reset` `vrba_r100_reset` (KS: + `pinnacle_k_r500`); `--large`: `uniform` `sobol` `rad_r500` `sled` | 2^14; `--large` 2^15, 2^16 | 2, 3, 5, 7, 11 |
 
@@ -86,7 +86,7 @@ final / best error, batch statistics, hashes). `--shared_phase1` writes to
 `runs_shared/`, `--smoke` to `runs_smoke/`. Finished runs are skipped, so an
 interrupted study resumes; a directory holding a different run is refused,
 never overwritten. Runs that two studies share (e.g. the five batch-size rules
-at 2^15) are trained once.
+at 2^14) are trained once.
 
 **Environment.** The scripts set `JAX_ENABLE_X64=True`,
 `XLA_FLAGS=--xla_gpu_deterministic_ops=true` and the highest matmul
@@ -197,11 +197,36 @@ third_party/       soap_jax (MIT, patched; see its README)
 
 ## Compute
 
-On one H100, a 40,000-step run takes ~30–55 min with a ~10–12 GiB peak, set by
-SSBroyden's three P × P float64 matrices. Rayleigh-Taylor grows about linearly
-above n = 16,384: ~2–2.6 h at 2^16, ~6.3 h and ~36 GiB at 2^17, which needs an
-80 GB GPU. The batch-size study is 990 runs; the sampler comparison adds 180,
-a1 144.
+**Time per run.** A run is 40,000 quasi-Newton steps from a stored hand-over.
+Medians of the recorded runs on one A100 (80 GB) at n = 16,384:
+
+| Burgers | Allen-Cahn | KdV | Ginzburg-Landau | KS | Rayleigh-Taylor |
+|---|---|---|---|---|---|
+| 28 min | 32 min | 40 min | 47 min | 52 min | 56 min |
+
+Smaller batches are faster (20–40 % at n = 2,048). Above n = 16,384 the cost
+grows mainly on Rayleigh-Taylor, about linearly in n; its n = 131,072 runs peak
+at ~36 GiB and need an 80 GB GPU. Every other run peaks at ~10–12 GiB (three
+P × P float64 matrices for P ≈ 21,000 network parameters). Phase 1 takes a few
+minutes per benchmark and seed.
+
+**Number of runs** over the six benchmarks. A run that an earlier row already
+contains (same rule, n and seed) is trained once, so the last column counts
+only the runs a study adds.
+
+| study | grid per benchmark | runs | new runs |
+|---|---|---|---|
+| batch size | 5 rules × 5 sizes × 6 seeds (KS 6 sizes, RT 7) | 990 | 990 |
+| sampler comparison | 10 rules × 10 seeds at n = 2^14 | 600 | 420 |
+| ablation a1 | 4 rules × 6 seeds at n = 2^14 | 144 | 144 |
+| supplementary protocols | 3 rules × 5 seeds at n = 2^14 (KS 4 rules) | 95 | 95 |
+| supplementary larger batches | 4 rules × 2 sizes × 5 seeds | 240 | 120 |
+| **total** | | **2,069** | **1,769** |
+
+The sampler comparison shares the five batch-size rules on seeds 2–13; the
+larger batches share `uniform`, `sobol` and `sled` wherever the batch-size study
+has that n. At ~40 min per run the 1,769 runs are roughly 1,200 A100-hours, plus
+the extra cost of the large Rayleigh-Taylor batches.
 
 ## License
 

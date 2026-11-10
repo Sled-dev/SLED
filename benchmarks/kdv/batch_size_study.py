@@ -11,7 +11,7 @@ into runs/phase1/seed<k>/phase1.pkl (shared with sampler_comparison.py; skipped
 if present) and every run restores it. Each run writes runs/<rule>/n<n>/seed<k>/
 (config.yaml, metrics.jsonl with the off-batch loss, params_end.pkl,
 summary.json); finished runs are skipped, so the script resumes where it
-stopped, and the n = 2^15 runs are shared with sampler_comparison.py. Run from
+stopped, and the n = 2^14 runs are shared with sampler_comparison.py. Run from
 this directory.
 """
 import os

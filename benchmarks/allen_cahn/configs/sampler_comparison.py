@@ -1,4 +1,4 @@
-"""Sampler comparison for Allen-Cahn: every sampling rule at n = 2^15 = 32,768.
+"""Sampler comparison for Allen-Cahn: every sampling rule at n = 2^14 = 16,384.
 
 Phase 1 is configs/base.py, trained once per seed; every run restores that
 checkpoint and runs QN_STEPS quasi-Newton steps on a batch of N points built by
@@ -15,7 +15,7 @@ the rule (pipeline.domain_importance_adapt.QN_RULES):
     vrba_r100      vRBA attention weights, redrawn every 100 steps
     pinnacle_k     PINNACLE-K: K-means++ on the eNTK convergence-degree embedding, frozen
 
-The scored rules and pinnacle_k draw from a candidate pool of 4 N = 131,072 points. At any
+The scored rules and pinnacle_k draw from a candidate pool of 4 N = 65,536 points. At any
 other n the pool follows the batch-size study's rule
 (configs/batch_size_study.pool_mult), so both studies build the same run for
 the same (rule, n, seed) and share its directory.
@@ -24,8 +24,8 @@ from pipeline.domain_importance_adapt import configure_qn_batch
 
 from configs import base, batch_size_study
 
-SEEDS = [2, 3, 5, 7, 11, 13]
-N = 2**15
+SEEDS = [2, 3, 5, 7, 11, 13, 17, 19, 23, 27]    # the ten seeds of the shared hand-overs
+N = 2**14
 RULES = ["uniform", "sobol", "rad", "lev", "kd", "sled",
          "uniform_r500", "rad_r500", "vrba_r100", "pinnacle_k"]
 QN_STEPS = 40_000

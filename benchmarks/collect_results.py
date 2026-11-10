@@ -7,12 +7,12 @@ benchmarks/results/):
 
     runs.csv                one row per run (the columns of RUN_COLUMNS)
     sampler_comparison.csv  median / min / max final_l2re per benchmark x rule
-                            at n = --n_comparison (default 2^15), with the
+                            at n = --n_comparison (default 2^14), with the
                             run statuses counted
     batch_size.csv          the same per benchmark x rule x n, for every rule
                             found at each n (the batch-size study's five rules
                             uniform, sobol, rad, lev, sled at every n; the
-                            comparison-only rules at 2^15); the a1 rules
+                            comparison-only rules at 2^14); the a1 rules
                             sled_fl<phi> only go to a1.csv
     a1.csv                  the ablation a1 per benchmark x rule at n = --n_a1
                             (default 2^14): the fixed floors sled_fl<phi> next
@@ -243,8 +243,8 @@ def main():
                     help="run tree inside each benchmark (runs, or runs_smoke for --smoke)")
     ap.add_argument("--benchmarks", nargs="+", default=None,
                     help="restrict to these benchmark folders")
-    ap.add_argument("--n_comparison", type=int, default=2**15,
-                    help="batch size of the sampler comparison table (default 32768)")
+    ap.add_argument("--n_comparison", type=int, default=2**14,
+                    help="batch size of the sampler comparison table (default 16384)")
     ap.add_argument("--n_a1", type=int, default=2**14,
                     help="batch size of the ablation a1 table (default 16384)")
     ap.add_argument("--n_supp", type=int, default=2**14,
