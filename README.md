@@ -210,23 +210,21 @@ at ~36 GiB and need an 80 GB GPU. Every other run peaks at ~10–12 GiB (three
 P × P float64 matrices for P ≈ 21,000 network parameters). Phase 1 takes a few
 minutes per benchmark and seed.
 
-**Number of runs** over the six benchmarks. A run that an earlier row already
-contains (same rule, n and seed) is trained once, so the last column counts
-only the runs a study adds.
+**Number of runs** over the six benchmarks:
 
-| study | grid per benchmark | runs | new runs |
-|---|---|---|---|
-| batch size | 5 rules × 5 sizes × 6 seeds (KS 6 sizes, RT 7) | 990 | 990 |
-| sampler comparison | 10 rules × 10 seeds at n = 2^14 | 600 | 420 |
-| ablation a1 | 4 rules × 6 seeds at n = 2^14 | 144 | 144 |
-| supplementary protocols | 3 rules × 5 seeds at n = 2^14 (KS 4 rules) | 95 | 95 |
-| supplementary larger batches | 4 rules × 2 sizes × 5 seeds | 240 | 120 |
-| **total** | | **2,069** | **1,769** |
+| study | grid per benchmark | runs |
+|---|---|---|
+| batch size | 5 rules × 5 sizes × 6 seeds (KS 6 sizes, RT 7) | 990 |
+| sampler comparison | 10 rules × 10 seeds at n = 2^14 | 600 |
+| ablation a1 | 4 rules × 6 seeds at n = 2^14 | 144 |
+| supplementary protocols | 3 rules × 5 seeds at n = 2^14 (KS 4 rules) | 95 |
+| supplementary larger batches | 4 rules × 2 sizes × 5 seeds | 240 |
 
-The sampler comparison shares the five batch-size rules on seeds 2–13; the
-larger batches share `uniform`, `sobol` and `sled` wherever the batch-size study
-has that n. At ~40 min per run the 1,769 runs are roughly 1,200 A100-hours, plus
-the extra cost of the large Rayleigh-Taylor batches.
+Some runs belong to two studies, e.g. `sled` at n = 2^14 on seed 2 is part of
+both the batch-size study and the sampler comparison. Such a run is trained once
+and stored once, so all studies together are 1,769 runs, not 2,069: roughly
+1,200 A100-hours at ~40 min per run, plus the extra cost of the large
+Rayleigh-Taylor batches.
 
 ## License
 
